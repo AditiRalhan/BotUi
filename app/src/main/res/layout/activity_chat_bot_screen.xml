@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ChatBotScreen">
+
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/conversation"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_above="@id/lin"
+        />
+
+    <LinearLayout
+        android:id="@+id/lin"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_alignParentBottom="true"
+
+        >
+        <EditText
+            android:id="@+id/userInput"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/montserrat"
+            android:padding="7dp"
+            android:layout_margin="10dp"
+            android:layout_weight="9"
+            android:elevation="3dp"
+            android:textSize="18dp"
+            android:inputType="text"
+            android:hint="Ask your query here!"
+            android:textColor="#827C7C"
+            android:textColorHint="#827C7C"
+            android:background="@drawable/bg_edtxt"
+            android:imeActionId="4"
+            android:imeOptions="actionSend"
+            />
+
+        <android.support.design.widget.FloatingActionButton
+            android:onClick="Send"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:srcCompat="@drawable/rightarrow"
+            android:layout_marginBottom="10dp"
+            android:layout_marginTop="10dp"
+            android:layout_weight="1"
+            app:backgroundTint="#76bf43"
+            android:tint="#eff0f2"
+            app:fabSize="mini"/>
+
+    </LinearLayout>
+
+
+
+
+</RelativeLayout>
