@@ -1,5 +1,6 @@
 package com.example.botui;
 
+import android.content.Intent;
 import android.os.Build;
 import android.os.Handler;
 import android.support.annotation.RequiresApi;
@@ -10,6 +11,8 @@ import android.support.v7.widget.RecyclerView;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.inputmethod.EditorInfo;
+import android.widget.Adapter;
+import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -43,8 +46,8 @@ public class ChatBotScreen extends AppCompatActivity {
     RecyclerView recyclerView;
     List<ResponseMessage> responseMessages;
     MessageAdapter messageAdapter;
-    String json_url ="http://0d9b9951.ngrok.io/webhooks/rest/webhook";
-    String s2="",s1="",s3="";
+    String json_url ="http://707eba8d.ngrok.io/webhooks/rest/webhook";
+    String s2="",s1="",s3="",bttn="";
 
 
     @Override
@@ -60,6 +63,8 @@ public class ChatBotScreen extends AppCompatActivity {
         messageAdapter= new MessageAdapter(responseMessages);
         recyclerView.setLayoutManager(new LinearLayoutManager(this,LinearLayoutManager.VERTICAL,false));
         recyclerView.setAdapter(messageAdapter);
+
+        final String[] test ={"Aditi","deepanshu","shreysh"};
 
         userInp.setOnEditorActionListener(new TextView.OnEditorActionListener() {
             @Override
@@ -96,7 +101,23 @@ public class ChatBotScreen extends AppCompatActivity {
                                             keysList.add(key);
                                         }
 
-                                        Toast.makeText(getApplicationContext(), keysList.get(0), Toast.LENGTH_LONG).show();
+                                        bttn = keysList.get(0);
+
+
+                                        if(bttn.equals("buttons"))
+                                        {
+                                            JSONArray keys = jsonObject.getJSONArray("buttons");
+                                            JSONObject inte = keys.getJSONObject(0);
+                                            s3=inte.getString("payload");
+                                            try
+                                            {
+                                                Intent mo = new Intent(ChatBotScreen.this, Class.forName(s3));
+                                                startActivity(mo);
+                                            }catch (ClassNotFoundException e) {
+                                                e.printStackTrace();
+                                            }
+
+                                        }
 
                                             s1= jsonObject.getString("recipient_id");
                                             s2 = jsonObject.getString("text");
